@@ -1,4 +1,4 @@
-package com.daniel.freshsnap_android
+package com.daniel.freshsnap_android.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,23 +6,24 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.daniel.freshsnap_android.R
+import com.daniel.freshsnap_android.data.Vegetables
+import com.daniel.freshsnap_android.databinding.FruitLayoutBinding
+import com.daniel.freshsnap_android.databinding.VegetableLayoutBinding
 import java.util.ArrayList
 
 class ListVegetableAdapter (private val listVegetable: ArrayList<Vegetables>) : RecyclerView.Adapter<ListVegetableAdapter.ListViewHolder>() {
-    class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var imgPhotoVegetable: ImageView = itemView.findViewById(R.id.vegetables_image)
-        var tvNameVegetable: TextView = itemView.findViewById(R.id.vegetables_name_tv)
-    }
+    class ListViewHolder(var binding: VegetableLayoutBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
-        val view: View = LayoutInflater.from(parent.context).inflate(R.layout.vegetable_layout, parent, false)
-        return ListViewHolder(view)
+        val binding = VegetableLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return ListViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
         val (name_vegetable, photo_vegetable) = listVegetable[position]
-        holder.imgPhotoVegetable.setImageResource(photo_vegetable)
-        holder.tvNameVegetable.text = name_vegetable
+        holder.binding.vegetablesImage.setImageResource(photo_vegetable)
+        holder.binding.vegetablesNameTv.text = name_vegetable
     }
 
     override fun getItemCount(): Int = listVegetable.size

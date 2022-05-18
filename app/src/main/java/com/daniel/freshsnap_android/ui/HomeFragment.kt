@@ -6,19 +6,23 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.daniel.freshsnap_android.*
+import com.daniel.freshsnap_android.adapter.ListFruitAdapter
+import com.daniel.freshsnap_android.adapter.ListVegetableAdapter
+import com.daniel.freshsnap_android.data.Fruits
+import com.daniel.freshsnap_android.data.Vegetables
 import com.daniel.freshsnap_android.databinding.FragmentFirstBinding
 
 
 class HomeFragment : Fragment() {
 
-    private var binding : FragmentFirstBinding? = null
+    private lateinit var binding : FragmentFirstBinding
 
     private val list_fruit = ArrayList<Fruits>()
     private val list_vegetable = ArrayList<Vegetables>()
 
-    private val _binding get() = binding!!
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,18 +39,19 @@ class HomeFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         binding = FragmentFirstBinding.inflate(inflater, container, false)
-        return _binding.root
+        return binding.root
 
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        (requireActivity() as AppCompatActivity).supportActionBar?.hide()
 
-        _binding.fruitsRecyclerview.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
-        _binding.vegetablesRecyclerview.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
+        binding.fruitsRecyclerview.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
+        binding.vegetablesRecyclerview.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
 
-        _binding.fruitsRecyclerview.setHasFixedSize(true)
-        _binding.vegetablesRecyclerview.setHasFixedSize(true)
+        binding.fruitsRecyclerview.setHasFixedSize(true)
+        binding.vegetablesRecyclerview.setHasFixedSize(true)
 
         showRecyclerListFruit()
         showRecyclerListVegetables()
@@ -68,7 +73,7 @@ class HomeFragment : Fragment() {
 
     private fun showRecyclerListFruit() {
         val listFruitAdapter = ListFruitAdapter(list_fruit)
-        _binding.fruitsRecyclerview.adapter = listFruitAdapter
+        binding.fruitsRecyclerview.adapter = listFruitAdapter
     }
 
     private val listVegetables: ArrayList<Vegetables>
@@ -86,12 +91,8 @@ class HomeFragment : Fragment() {
 
     private fun showRecyclerListVegetables() {
         val listVegetableAdapter = ListVegetableAdapter(list_vegetable)
-        _binding.vegetablesRecyclerview.adapter = listVegetableAdapter
+        binding.vegetablesRecyclerview.adapter = listVegetableAdapter
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        binding = null
-    }
 
 }

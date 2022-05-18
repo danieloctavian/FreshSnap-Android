@@ -14,6 +14,19 @@
         android:scaleType="fitXY"
         android:src="@drawable/background_image"
         app:layout_constraintBottom_toTopOf="@id/fruits_text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/fresh_snap_title"
+        android:textColor="@color/white"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        app:layout_constraintBottom_toTopOf="@id/fruits_text"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -29,7 +42,6 @@
         android:textStyle="bold"
         app:layout_constraintTop_toBottomOf="@id/image_background"
         app:layout_constraintStart_toStartOf="parent"/>
-
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/fruitsRecyclerview"

@@ -1,8 +1,9 @@
-package com.daniel.freshsnap_android
+package com.daniel.freshsnap_android.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.daniel.freshsnap_android.data.Fruits
 import com.daniel.freshsnap_android.databinding.FruitLayoutBinding
 import java.util.ArrayList
 
